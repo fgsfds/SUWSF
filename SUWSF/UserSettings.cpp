@@ -35,7 +35,7 @@ void UserSettings::SetConfig()
 	}
 	config.aspectratio = (double)config.width / config.height;
 	config.raspectratio = (double)config.height / config.width;
-	config.freedomforcefov = (((double)config.width / config.height) * 0.7) * 0.400000005960464;
+	config.freedomforcefov = (((double)config.width / config.height) * 0.6) * 0.400000005960464;
 	DBOUT("Detected width is " << config.width);
 	DBOUT("Detected height is " << config.height);
 	DBOUT("Detected aspect ratio is " << config.aspectratio);
