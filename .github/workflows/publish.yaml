@@ -63,6 +63,7 @@ jobs:
 
   release:  
     runs-on: windows-2022
+    needs: build
     steps:   
     
     - uses: actions/download-artifact@master
