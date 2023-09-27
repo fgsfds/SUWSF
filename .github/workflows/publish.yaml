@@ -77,13 +77,13 @@ jobs:
       with:
         name: "SUWSF-x86.zip"
         path: "SUWSF-x86.zip"
-        
-          
+   
     - name: Create release
-      uses: ncipollo/release-action@v1
+      uses: majkrzak/create-release@master
       with:
-        artifacts: "D:/a/SUWSF/SUWSF/SUWSF-x64.zip"
+        token: ${{github.token}}
         name: build${{ github.run_number }}
-        tag: build${{ github.run_number }}
+        code: latest
         prerelease: true
-        body: "This is a pre-release version of the Ion Fury Voxel Pack that includes all the latest additions and changes" 
+        assets: >
+          SUWSF-x64.zip:application/zip
