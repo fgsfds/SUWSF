@@ -59,7 +59,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: "SUWSF-${{ matrix.platform }}.zip"
-        path: "art"
+        path: "SUWSF-${{ matrix.platform }}.zip"
         
 
   release:  
@@ -70,13 +70,13 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: "SUWSF-x64.zip"
-        path: "art"
+        path: "SUWSF-x64.zip"
         
     
     - uses: actions/download-artifact@v3
       with:
         name: "SUWSF-x86.zip"
-        path: "art"
+        path: "SUWSF-x86.zip"
         
           
     - name: Create release
