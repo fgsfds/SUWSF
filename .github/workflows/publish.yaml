@@ -82,7 +82,7 @@ jobs:
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "D:\\a\\SUWSF\\SUWSF\\SUWSF-x64.zip,D:\\a\\SUWSF\\SUWSF\\SUWSF-x86.zip"
+        artifacts: "D:/a/SUWSF/SUWSFSUWSF-x64.zip"
         name: build${{ github.run_number }}
         tag: build${{ github.run_number }}
         prerelease: true
