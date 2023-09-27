@@ -2,8 +2,9 @@ name: Publish
 
 on:
   push:
-    tags:
-      - '*'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -11,21 +12,7 @@ jobs:
     strategy:
       matrix:
         platform: [ x86, x64 ]
-    steps:
-    - name: Check Tag
-      id: check-tag
-      uses: actions-ecosystem/action-regex-match@v2
-      with:
-        text: ${{ github.ref_name }}
-        regex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
-
-    - name: Fail if invalid
-      if: steps.check-tag.outputs.match == ''
-      uses: Actions/github-script@v3
-      with:
-        script: |
-          core.setFailed('Invalid tag')
-    
+    steps:    
     - uses: microsoft/setup-msbuild@v1
 
     - uses: abel0b/setup-premake@v2
@@ -66,9 +53,13 @@ jobs:
         mv LICENSE ${{ matrix.platform }}/Release/
         mv SUWSF.ini ${{ matrix.platform }}/Release/
         7z a -tzip "SUWSF-${{ matrix.platform }}.zip" "./${{ matrix.platform }}/Release/*"
-
+          
     - name: Create release
-      uses: softprops/action-gh-release@v1
+      uses: ncipollo/release-action@v1
       with:
-        files: "SUWSF-${{ matrix.platform }}.zip"
-        draft: true
+        artifacts: "SUWSF-${{ matrix.platform }}.zip"
+        name: build${{ github.run_number }}
+        tag: build${{ github.run_number }}
+        prerelease: true
+        body: "This is a pre-release version of the Ion Fury Voxel Pack that includes all the latest additions and changes"
+
