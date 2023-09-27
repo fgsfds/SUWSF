@@ -59,7 +59,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: "SUWSF-${{ matrix.platform }}.zip"
-        path: artifact
+        
 
   release:  
     runs-on: windows-2022
@@ -69,12 +69,12 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: "SUWSF-x64.zip"
-        path: artifact
+        
     
     - uses: actions/download-artifact@master
       with:
         name: "SUWSF-x86.zip"
-        path: artifact
+        
           
     - name: Create release
       uses: ncipollo/release-action@v1
