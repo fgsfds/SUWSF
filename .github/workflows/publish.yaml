@@ -66,12 +66,12 @@ jobs:
     needs: build
     steps:   
     
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@v3
       with:
         name: "SUWSF-x64.zip"
         
     
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@v3
       with:
         name: "SUWSF-x86.zip"
         
