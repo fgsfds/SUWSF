@@ -86,4 +86,4 @@ jobs:
         code: latest
         prerelease: true
         assets: >
-          SUWSF-x64.zip:application/zip
+          D:\a\SUWSF\SUWSF\SUWSF-x64.zip:application/zip
