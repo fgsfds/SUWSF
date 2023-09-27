@@ -9,6 +9,8 @@ public:
 	{
 		int width, height;
 		double aspectratio;
+		double raspectratio;
+		double freedomforcefov;
 		bool enabled = true;
 		bool createThread = true;
 		int delayInSeconds = 0;
