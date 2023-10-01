@@ -7,12 +7,23 @@ on:
     branches: [ "main" ]
 
 jobs:
+  deleteold:  
+    runs-on: windows-2022
+    steps:
+        
+    - name: Delete Older Releases
+      uses: nikhilbadyal/ghaction-rm-releases@v0.0.5
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_PATTERN: 'build_*'
+
   build:
     runs-on: windows-2022
     strategy:
       matrix:
         platform: [ x86, x64 ]
-    steps:    
+    steps:
+    
     - uses: microsoft/setup-msbuild@v1
 
     - uses: abel0b/setup-premake@v2
@@ -53,33 +64,11 @@ jobs:
         mv LICENSE ${{ matrix.platform }}/Release/
         mv SUWSF.ini ${{ matrix.platform }}/Release/
         7z a -tzip "SUWSF-${{ matrix.platform }}.zip" "./${{ matrix.platform }}/Release/*"
-        
-    - run: mkdir -p artifact
-    
-    - uses: actions/upload-artifact@master
-      with:
-        name: "SUWSF-${{ matrix.platform }}.zip"
-        path: artifact
 
-  release:  
-    runs-on: windows-2022
-    steps:   
-    
-    - uses: actions/download-artifact@master
-      with:
-        name: "SUWSF-SUWSF-x64.zip"
-        path: artifact
-    
-    - uses: actions/download-artifact@master
-      with:
-        name: "SUWSF-SUWSF-x86.zip"
-        path: artifact
-          
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "SUWSF-SUWSF-x64.zip,SUWSF-SUWSF-x86.zip"
-        name: build${{ github.run_number }}
-        tag: build${{ github.run_number }}
+        artifacts: "SUWSF-${{ matrix.platform }}.zip"
+        name: build_${{ github.run_number }}_${{ matrix.platform }}
+        tag: build_${{ github.run_number }}_${{ matrix.platform }}
         prerelease: true
-        body: "This is a pre-release version of the Ion Fury Voxel Pack that includes all the latest additions and changes" 
