@@ -117,6 +117,8 @@ std::vector<GenericPatch::Config> GenericPatch::GetConfigs()
 				boost::replace_all(config.val, "height", std::to_string(UserSettings::config.height));
 				boost::replace_all(config.val, "raspectratio", boost::lexical_cast<std::string>(UserSettings::config.raspectratio));
 				boost::replace_all(config.val, "aspectratio", boost::lexical_cast<std::string>(UserSettings::config.aspectratio));
+				boost::replace_all(config.val, "rardifference", boost::lexical_cast<std::string>(UserSettings::config.rardifference));
+				boost::replace_all(config.val, "ardifference", boost::lexical_cast<std::string>(UserSettings::config.ardifference));
 				boost::replace_all(config.val, "freedomforcefov", boost::lexical_cast<std::string>(UserSettings::config.freedomforcefov));
 				int error = -1;
 				double d = te_interp(config.val.c_str(), &error);

@@ -10,6 +10,8 @@ public:
 		int width, height;
 		double aspectratio;
 		double raspectratio;
+		double ardifference;
+		double rardifference;
 		double freedomforcefov;
 		bool enabled = true;
 		bool createThread = true;

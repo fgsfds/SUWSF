@@ -35,11 +35,15 @@ void UserSettings::SetConfig()
 	}
 	config.aspectratio = (double)config.width / config.height;
 	config.raspectratio = (double)config.height / config.width;
-	config.freedomforcefov = (((double)config.width / config.height) * 0.6) * 0.400000005960464;
+	config.ardifference = (double)1.333333333333333 / config.aspectratio;
+	config.rardifference = (double)config.aspectratio / 1.333333333333333;
+	config.freedomforcefov = (double)config.width / config.height * 0.6 * 0.400000005960464;
 	DBOUT("Detected width is " << config.width);
 	DBOUT("Detected height is " << config.height);
 	DBOUT("Detected aspect ratio is " << config.aspectratio);
 	DBOUT("Detected reverse aspect ratio is " << config.raspectratio);
+	DBOUT("Detected aspect ratio difference " << config.ardifference);
+	DBOUT("Detected reverse aspect ratio difference " << config.rardifference);
 	DBOUT("Detected Freedom Force FOV is " << config.freedomforcefov);
 
 	config.enabled = ini.ReadBoolean("UserSettings", "Enabled", config.enabled);
