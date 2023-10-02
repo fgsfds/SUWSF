@@ -2,6 +2,8 @@
 
 Somewhat Universal Widescreen Fix is intended to enable widescreen aspect ratios (e.g. 21:9, 32:9, 48:9) in games where it is unsupported.
 
+This fork provides additional values and hacks for specific games.
+
 ## WARNING IT IS NOT RECOMMENDED TO USE THIS FIX IN GAMES THAT CONTAIN ANTICHEAT
 
 ## Installation
@@ -68,9 +70,16 @@ If `ValueType` is `float` then this can contain numbers or included variables. T
 If `ValueType` is `byte` then this should contain an array of bytes! e.g. `90 90 90 90`  
 
 Included variables:  
-`aspectratio` - This will be replaced with the user's screen's aspect ratio.  
 `width` - This will be replaced with the user's screen's width.  
 `height` - This will be replaced with the user's screen's height.  
+
+`aspectratio` - This will be replaced with the user's screen's aspect ratio (width / height).  
+`raspectratio` - This will be replaced with the user's screen's reverse aspect ratio (height / width).  
+
+`ardifference` - This will be replaced with the difference between 4:3 and user's aspect ratios (aspectratio / 1.3333).
+`rardifference` - This will be replaced with the difference between user's and 4:3 aspect ratios (1.3333 / aspectratio).
+
+`freedomforcefov` - This will be replaced with the specially calculated FOV value for Freedom Force game.
 
 Example:  
 `Value="width/height"`  

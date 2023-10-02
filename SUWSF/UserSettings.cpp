@@ -33,17 +33,23 @@ void UserSettings::SetConfig()
 		config.width = std::stoi(resStrings.at(0));
 		config.height = std::stoi(resStrings.at(1));
 	}
-	config.aspectratio = (double)config.width / config.height;
-	config.raspectratio = (double)config.height / config.width;
-	config.ardifference = (double)1.333333333333333 / config.aspectratio;
-	config.rardifference = (double)config.aspectratio / 1.333333333333333;
-	config.freedomforcefov = (double)config.width / config.height * 0.6 * 0.400000005960464;
+
 	DBOUT("Detected width is " << config.width);
 	DBOUT("Detected height is " << config.height);
+
+	config.aspectratio = (double)config.width / config.height;
 	DBOUT("Detected aspect ratio is " << config.aspectratio);
+
+	config.raspectratio = (double)config.height / config.width;
 	DBOUT("Detected reverse aspect ratio is " << config.raspectratio);
+
+	config.ardifference = (double)config.aspectratio / 1.333333333333333;
 	DBOUT("Detected aspect ratio difference " << config.ardifference);
+
+	config.rardifference = (double)1.333333333333333 / config.aspectratio;
 	DBOUT("Detected reverse aspect ratio difference " << config.rardifference);
+
+	config.freedomforcefov = (double)config.width / config.height * 0.6 * 0.400000005960464;
 	DBOUT("Detected Freedom Force FOV is " << config.freedomforcefov);
 
 	config.enabled = ini.ReadBoolean("UserSettings", "Enabled", config.enabled);
